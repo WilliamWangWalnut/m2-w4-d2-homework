@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Food Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <!-- Load vue library first!!! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    
+    <style>
+        * {
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        #leftside {
+            float:left;
+            width: 30%;
+            min-height: 1500px;
+            background-color:rgb(77, 192, 154);
+        }
+        #rightside {
+            float:left;
+            width: 70%;
+            min-height: 1500px;
+            background-color:rgb(238, 226, 192);
+            position:relative;
+        }
+        #container {
+            background-color:rgba(255, 255, 255, 0.85);
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            min-width: 1100px;
+            min-height: 1150px;
+            border-radius: 0.7em;
+        }
+        header {
+            height: 50px;
+            background-color:rgba(231, 229, 229, 0.5);
+            font-size: 2.75em;
+            padding:0.5em;
+            color:rgb(216, 150, 7);
+        }
+        header span {
+            font-family: 'Sacramento', cursive;
+        }
+        main {
+            position: relative;
+        }
+        main h2 {
+            position: absolute;
+            left: 20%;
+            top: 30px;
+            margin: 25px 0 200px 50px;
+            color:rgb(60, 190, 160);
+            text-transform: uppercase;
+        }
+        main #photos img {
+            margin: 0.75em;
+            border: 0.85em solid rgb(255, 255, 255);
+        }
+        section#blogposts {
+            position: absolute;
+            left: 20%;
+            top: 70px;
+            padding: 50px;
+        }
+        main .post {
+            margin: 25px;
+            padding: 25px;
+            border: 2px solid rgba(83, 78, 58, 0.6);
+            border-radius: 0.5em;
+        }
+        .bio {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: large;
+            width: 300px;
+            height: 400px;
+            border-radius: 25px;
+            padding: 30px;
+            position: absolute;
+            left: 450px;
+            top: 450px;
+        }
+        .bio button {
+            margin-top: 70px;
+        }
+        .bio .close {
+            font-weight: 900;
+            margin-left: 280px;
+        }
+        .bio #infohead {
+            font-size: 30pt;
+            bottom: 350px;
+            position: absolute;
+        }
+        .bio #foodielv {
+            margin-top: 70px;
+        }
+        #brianna, #linh, #cat, #kali {
+            display: none;
+        }
+        footer {
+            position: absolute;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85em;
+            padding-top: 850px;
+        }
+    </style>
+
+    
+
+</head>
+<body>
+    <aside id="leftside"></aside>
+    <aside id="rightside"></aside>
+    <div id="container">
+    <!-- Add Component1 -->
+    <header id="component1">
+        <mycomponent1></mycomponent1>
+    </header>
+
+    <main>
+    
+    <aside id="photos">
+        <img src="images/chili.jpg" alt="White Chicken Chili" width="180">
+    </aside>
+    <!-- Add Component2 -->
+    <div id="component2">
+        <mycomponent2></mycomponent2>
+    </div>
+    
+    
+    <section id="blogposts"> 
+        <div id="vueblog">
+            <!-- Add Instance 1 -->
+            <div class="post" id="post1">
+                <span v-on:click="showdata"><img v-bind:src="src" v-bind:width="width" alt="" target = ""></span>
+                <span class="author">{{author}}</span> — 
+                <span class="date">{{date}}</span>
+                <span class="reply">{{reply}}</span>
+                <p>{{paragraph}}</p>
+            </div>
+            <!-- Add Instance 2 -->
+            <div class="post" id="post2">
+                <span><img v-bind:src="src" v-bind:width="width" alt="" target = ""></span>
+                <span class="author">{{author}}</span> — 
+                <span class="date">{{date}}</span>
+                <span class="reply">{{reply}}</span>
+                <p>{{paragraph}}</p>
+            </div>
+            <!-- Add Instance 3 -->
+            <div class="post" id="post3">
+                <span><img v-bind:src="src" v-bind:width="width" alt="" target = ""></span>
+                <span class="author">{{author}}</span> — 
+                <span class="date">{{date}}</span>
+                <span class="reply">{{reply}}</span>
+                <p>{{paragraph}}</p>
+            </div>
+            <!-- Add Instance 4 -->
+            <div class="post" id="post4">
+                <span><img v-bind:src="src" v-bind:width="width" alt="" target = ""></span>
+                <span class="author">{{author}}</span> — 
+                <span class="date">{{date}}</span>
+                <span class="reply">{{reply}}</span>
+                <p>{{paragraph}}</p>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <div class="bio" id="brianna">
+        <span class="close">x</span>
+        <h2 id="infohead">{{head}}</h2>
+        <h3 id="foodielv">{{foodielv}}</h3>
+        <h3 id="bio">{{bio}}</h3>
+        <p id="bioinfo">{{bioinfo}}</p>
+        <button>Close</button>
+    </div>
+    <div class="bio" id="linh">
+        <span class="close">x</span>
+        <h2 id="infohead">{{head}}</h2>
+        <h3 id="foodielv">{{foodielv}}</h3>
+        <h3 id="bio">{{bio}}</h3>
+        <p id="bioinfo">{{bioinfo}}</p>
+        <button>Close</button>
+    </div>
+    <div class="bio" id="cat">
+        <span class="close">x</span>
+        <h2 id="infohead">{{head}}</h2>
+        <h3 id="foodielv">{{foodielv}}</h3>
+        <h3 id="bio">{{bio}}</h3>
+        <p id="bioinfo">{{bioinfo}}</p>
+        <button>Close</button>
+    </div>
+    <div class="bio" id="kali">
+        <span class="close">x</span>
+        <h2 id="infohead">{{head}}</h2>
+        <h3 id="foodielv">{{foodielv}}</h3>
+        <h3 id="bio">{{bio}}</h3>
+        <p id="bioinfo">{{bioinfo}}</p>
+        <button>Close</button>
+    </div>
+
+    <footer>
+        &copy; Copyright FOOD BLOG
+    </footer>
+    
+</div>
+
+
+
+<script>
+    // Components
+    var vm1 = new Vue({
+        el: '#component1',
+        components:{
+            'mycomponent1': {
+                template: '<span>Food Blog</span>'
+            }
+        }
+    });
+
+    var vm2 = new Vue({
+        el: '#component2',
+        components:{
+            'mycomponent2': {
+                template: '<h2>Comments</h2>'
+            }
+        }
+    });
+
+    // Instances
+    var app1 = new Vue({
+        el: '#post1',
+        data: {
+            src: "profile.png",
+            author: "Brianna!",
+            date: "February 18, 2021 @ 3:30 pm",
+            reply: "REPLY",
+            paragraph: "Was amazing! My Walmart didn’t have coriander in stock and didn’t have ground cumin. I used serrano instead of jalapeño. It was just like my favorite tortilla soup from BJs. I am sending this recipe to my family. I want everyone to try it!",
+            width: "50",
+        },
+    });
+
+    var app2 = new Vue({
+        el: '#post2',
+        data: {
+            src: "profile.png",
+            author: "LINH!",
+            date: "February 15, 2021 @ 9:46 am",
+            reply: "REPLY",
+            paragraph: "I just made this soup today and it’s so tasty! didn’t have corn at home but still turned out very good.  It’s a winner!  I made beef chili for my parents; but since my dad has gout he can’t eat beef; this white chicken chili is perfect for him.  Thank you Lisa!",
+            width: "50",
+        }
+    });
+
+    var app3 = new Vue({
+        el: '#post3',
+        data: {
+            src: "profile.png",
+            author: "CATHERINE LEONARDO!",
+            date: "February 13, 2021 @ 12:58 pm",
+            reply: "REPLY",
+            paragraph: "I LOVE this White Chicken Chili! You are right, it is satiating meal—delicious with toasted bread. Refreshingly different taste than any chicken chili I’ve made in the past. I made it exactly as written and added some chopped zucchini, carrots, and celery. Instead of shredding the chicken, I chopped it into small pieces. It freezes very well. Will be an all-time favorite, for sure.",
+            width: "50",
+        }
+    });
+
+    var app4 = new Vue({
+        el: '#post4',
+        data: {
+            src: "profile.png",
+            author: "KALI!",
+            date: "February 13, 2021 @ 11:31 am",
+            reply: "REPLY",
+            paragraph: "This recipe is dynamite! My partner usually won’t eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
+            width: "50",
+        }
+    });
+
+
+    var app5 = new Vue({
+        el: '#brianna',
+        data: {
+            head: "Brianna",
+            foodielv: "Foodie Level: Novice",
+            bio: "Bio:",
+            bioinfo: "Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+        },
+        method: {
+            showdata: function() {
+                this.style.display = "block";
+            }
+        },
+    });
+
+    var app6 = new Vue({
+        el: '#linh',
+        data: {
+            head: "Brianna",
+            foodielv: "Foodie Level: Novice",
+            bio: "Bio:",
+            bioinfo: "Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+        }
+    });
+
+    var app7 = new Vue({
+        el: '#cat',
+        data: {
+            head: "Brianna",
+            foodielv: "Foodie Level: Novice",
+            bio: "Bio:",
+            bioinfo: "Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+        }
+    });
+
+    var app8 = new Vue({
+        el: '#kali',
+        data: {
+            head: "Brianna",
+            foodielv: "Foodie Level: Novice",
+            bio: "Bio:",
+            bioinfo: "Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+        }
+    });    
+
+
+    
+    
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
